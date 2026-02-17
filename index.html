@@ -7,12 +7,22 @@
     
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
-    <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
 
+    <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
     <py-config>
         [[fetch]]
         files = ["./countjp.py"]
     </py-config>
+
+    <meta name="description" content="The best Japanese character counter for immersion learners. Count Kanji, Hiragana, and Katakana while excluding punctuation. Ad-free and privacy-focused.">
+    <meta name="keywords" content="Japanese character count, mojikazu, count kanji, japanese immersion tool, count hiragana katakana">
+
+    <meta name="twitter:image:alt" content="A pink cherry blossom icon for mojikazu.moe Japanese counter">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mojikazu.moe">
+    <meta property="og:title" content="mojikazu.moe | Japanese Character Counter">
+    <meta property="og:description" content="Accurate Japanese character counting for immersion tracking. No ads, no punctuation fluff.">
+    <meta property="og:image" content="https://mojikazu.moe">
 </head>
 <body>
     <nav class="top-nav">
@@ -36,6 +46,6 @@
         <div id="katakana">片仮名 Katakana<span>0</span></div>
     </div>
     
-    <script type="py" src="./countjp.py" config="py-config"></script>
+    <script type="py" src="./countjp.py"></script>
 </body>
 </html>
