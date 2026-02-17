@@ -15,8 +15,8 @@
             <p class="subtitle">Immersion-focused Japanese character counter</p>
         </div>
         <div class="support">
-            <a href="https://ko-fi.com" target="_blank" class="kofi-button">
-                ☕ <span>Buy me a coffee</span>
+            <a href="https://ko-fi.com/mojikazu" target="_blank" class="kofi-button">
+                ☕ <span>Buy me a コーヒー</span>
             </a>
         </div>
     </nav>
@@ -29,7 +29,11 @@
         <div id="hiragana">平仮名 Hiragana<span>0</span></div>
         <div id="katakana">片仮名 Katakana<span>0</span></div>
     </div>
-
-    <script type="py" src="./countjp.py"></script>
+    
+    <py-config>
+        [[fetch]]
+        files = ["./countjp.py"]
+    </py-config>
+    <script type="py" src="./countjp.py" config="py-config"></script>
 </body>
 </html>
