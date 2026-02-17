@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mojikazu.moe | Japanese Immersion Counter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="brand">
+            <h1>文字数 <span class="site-romaji">mojikazu.moe</span></h1>
+            <p class="subtitle">Immersion-focused Japanese character counter</p>
+        </div>
+        <div class="support">
+            <a href="https://ko-fi.com" target="_blank" class="kofi-button">
+                ☕ <span>Buy me a coffee</span>
+            </a>
+        </div>
+    </nav>
+
+    <textarea id="jptext" placeholder="Paste Japanese text here..."></textarea>
+
+    <div class="counter-container">
+        <div id="total">合計 Total<span>0</span></div>
+        <div id="kanji">漢字 Kanji<span>0</span></div>
+        <div id="hiragana">平仮名 Hiragana<span>0</span></div>
+        <div id="katakana">片仮名 Katakana<span>0</span></div>
+    </div>
+
+    <script type="py" src="./countjp.py"></script>
+</body>
+</html>
