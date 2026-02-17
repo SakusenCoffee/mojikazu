@@ -37,10 +37,34 @@
     <textarea id="jptext" placeholder="Paste Japanese text here..."></textarea>
 
     <div class="counter-container">
-        <div id="total">合計 Total<span>0</span></div>
-        <div id="kanji">漢字 Kanji<span>0</span></div>
-        <div id="hiragana">平仮名 Hiragana<span>0</span></div>
-        <div id="katakana">片仮名 Katakana<span>0</span></div>
+        <div id="total" class="counter-card">
+            <div class="label-group">
+                <div class="jp-label">合計</div>
+                <div class="en-label">Total</div>
+            </div>
+            <span>0</span>
+        </div>
+        <div id="kanji" class="counter-card">
+            <div class="label-group">
+                <div class="jp-label">漢字</div>
+                <div class="en-label">Kanji</div>
+            </div>
+            <span>0</span>
+        </div>
+        <div id="hiragana" class="counter-card">
+            <div class="label-group">
+                <div class="jp-label">平仮名</div>
+                <div class="en-label">Hiragana</div>
+            </div>
+            <span>0</span>
+        </div>
+        <div id="katakana" class="counter-card">
+            <div class="label-group">
+                <div class="jp-label">片仮名</div>
+                <div class="en-label">Katakana</div>
+            </div>
+            <span>0</span>
+        </div>
     </div>
     
     <script type="py" src="./countjp.py"></script>
