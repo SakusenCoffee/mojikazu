@@ -2,7 +2,10 @@ import re, js
 from pyscript import document, when
 from pyodide.ffi import create_proxy
 
-ignore_char = r'\u30FB'
+gnored_list = [
+    '\u30F',
+]
+ignored_char = r'[' + ''.join(ignored_list) + r']'
 
 @when("input", "#jptext")
 def count_text(event):
