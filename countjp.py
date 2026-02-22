@@ -13,7 +13,7 @@ def count_text(event):
     ignore = len (re.findall(ignored_char, text))
     kanji = len(re.findall(r'[\u4E00-\u9FFF]', text))
     hiragana = len(re.findall(r'[\u3040-\u309F]', text))
-    katakana = len(re.findall(r'[\u30A0-\u30FF]', text))-ignore
+    katakana = len(re.findall(r'[\u30A0-\u30FF]', text))
     punctuation = len(re.findall(r'[\u3000-\u303F]', text))
 
     total = sum([kanji, hiragana, katakana])-ignore
@@ -22,7 +22,7 @@ def count_text(event):
     document.querySelector("#total span").innerText = total
     document.querySelector("#kanji span").innerText = kanji
     document.querySelector("#hiragana span").innerText = hiragana
-    document.querySelector("#katakana span").innerText = katakana
+    document.querySelector("#katakana span").innerText = katakana-ignore
 
 counter_ids = ["#total", "#kanji", "#hiragana", "#katakana"]
 
