@@ -10,11 +10,11 @@ def count_text(event):
     text = document.querySelector("#jptext")
     text = text.value
 
+    ignore = len (re.findall(ignored_char, text))
     kanji = len(re.findall(r'[\u4E00-\u9FFF]', text))
     hiragana = len(re.findall(r'[\u3040-\u309F]', text))
-    katakana = len(re.findall(r'[\u30A0-\u30FF]', text))
+    katakana = len(re.findall(r'[\u30A0-\u30FF]', text))-ignore
     punctuation = len(re.findall(r'[\u3000-\u303F]', text))
-    ignore = len (re.findall(ignored_char, text))
 
     total = sum([kanji, hiragana, katakana])-ignore
     totalWithPunct = sum([punctuation, total])
