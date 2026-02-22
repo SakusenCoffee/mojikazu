@@ -2,9 +2,7 @@ import re, js
 from pyscript import document, when
 from pyodide.ffi import create_proxy
 
-ignored_list = [
-    '\u30FB'
-]
+ignored_list = ['\u30FB']
 ignored_char = r'[' + ''.join(ignored_list) + r']'
 
 @when("input", "#jptext")
