@@ -2,7 +2,7 @@ import re, js
 from pyscript import document, when
 from pyodide.ffi import create_proxy
 
-gnored_list = [
+ignored_list = [
     '\u30F',
 ]
 ignored_char = r'[' + ''.join(ignored_list) + r']'
@@ -16,7 +16,7 @@ def count_text(event):
     hiragana = len(re.findall(r'[\u3040-\u309F]', text))
     katakana = len(re.findall(r'[\u30A0-\u30FF]', text))
     punctuation = len(re.findall(r'[\u3000-\u303F]', text))
-    ignore = len (re.findall(ignore_char, text))
+    ignore = len (re.findall(ignored_char, text))
 
     total = sum([kanji, hiragana, katakana])-ignore
     totalWithPunct = sum([punctuation, total])
