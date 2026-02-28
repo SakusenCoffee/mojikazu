@@ -2,55 +2,58 @@ import re, js
 from pyscript import document, when
 from pyodide.ffi import create_proxy
 
-ignored_list = ['\u30FB']
-ignored_char = r'[' + ''.join(ignored_list) + r']'
+# Compile Regex
+IGNORED_CHAR_RE = re.compile(r'[\u30FB]')
+KANJI_RE = re.compile(r'[\u4E00-\u9FFF]')
+HIRAGANA_RE = re.compile(r'[\u3040-\u309F]')
+KATAKANA_RE = re.compile(r'[\u30A0-\u30FF]')
+PUNCT_RE = re.compile(r'[\u3000-\u303F]')
+
+input_area = document.querySelector("#jptext")
+display_total = document.querySelector("#total span")
+display_kanji = document.querySelector("#kanji span")
+display_hira = document.querySelector("#hiragana span")
+display_kata = document.querySelector("#katakana span")
 
 @when("input", "#jptext")
 def count_text(event):
-    text = document.querySelector("#jptext")
-    text = text.value
+    text = input_area.value
 
-    ignore = len (re.findall(ignored_char, text))
-    kanji = len(re.findall(r'[\u4E00-\u9FFF]', text))
-    hiragana = len(re.findall(r'[\u3040-\u309F]', text))
-    katakana = len(re.findall(r'[\u30A0-\u30FF]', text))
-    punctuation = len(re.findall(r'[\u3000-\u303F]', text))
+    ignore = len(IGNORED_CHAR_RE.findall(text))
+    kanji = len(KANJI_RE.findall(text))
+    hiragana = len(HIRAGANA_RE.findall(text))
+    katakana = len(KATAKANA_RE.findall(text))
+    punctuation = len(PUNCT_RE.findall(text))
 
-    total = sum([kanji, hiragana, katakana])-ignore
-    totalWithPunct = sum([punctuation, total])
+    total = (kanji + hiragana + katakana) - ignore
 
-    document.querySelector("#total span").innerText = total
-    document.querySelector("#kanji span").innerText = kanji
-    document.querySelector("#hiragana span").innerText = hiragana
-    document.querySelector("#katakana span").innerText = katakana-ignore
+   # totalWithPunct = sum([punctuation, total])
 
-counter_ids = ["#total", "#kanji", "#hiragana", "#katakana"]
+    display_total.innerText = str(total)
+    display_kanji.innerText = str(kanji)
+    display_hira.innerText = str(hiragana)
+    display_kata.innerText = str(katakana - ignore)
 
-@when("click", ",".join(counter_ids))
+# Hidden clipboard
+_hidden_copy_el = js.document.createElement("textarea")
+_hidden_copy_el.style.position = "fixed"
+_hidden_copy_el.style.left = "-9999px"
+_hidden_copy_el.style.top = "0"
+js.document.body.appendChild(_hidden_copy_el)
+
+# Copy to clipboard
+@when("click", "#total, #kanji, #hiragana, #katakana")
 def handle_copy(event):
-    element = event.currentTarget
-    element_span = element.querySelector("span")
-    if not element_span:
-        return
+    span = event.currentTarget.querySelector("span")
+    if not span: return
 
-    text_to_copy = element_span.innerText
+    text_to_copy = span.innerText
 
-    temp_input = js.document.createElement("textarea")
-    temp_input.value = text_to_copy
-
-    temp_input.style.position = "absolute"
-    temp_input.style.left = "-9999px"
-
-    js.document.body.appendChild(temp_input)
-    temp_input.select()
+    _hidden_copy_el.value = text_to_copy
+    _hidden_copy_el.select()
     js.document.execCommand("copy")
 
-    js.document.body.removeChild(temp_input)
-
-    original_value = text_to_copy
-    element_span.innerText = "Copied!"
-
+    span.innerText = "Copied!"
     def reset_text():
-        element_span.innerText = text_to_copy
-
+    span.innerText = text_to_copy
     js.setTimeout(create_proxy(reset_text), 800)
