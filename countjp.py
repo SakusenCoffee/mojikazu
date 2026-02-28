@@ -57,3 +57,7 @@ def handle_copy(event):
     def reset_text():
         span.innerText = text_to_copy
     js.setTimeout(create_proxy(reset_text), 800)
+
+# Activate text area when done loading
+input_area.removeAttribute("disabled")
+input_area.placeholder = "Paste Japanese text here..."
