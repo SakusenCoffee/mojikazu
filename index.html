@@ -50,7 +50,22 @@
         </div>
     </nav>
 
-    <textarea id="jptext" disabled placeholder="Loading Python engine..."></textarea>
+
+<div id="app-wrapper">
+    <textarea id="jptext" class="loading-state" disabled placeholder=""></textarea>
+
+    <div id="loader-overlay">
+        <div id="loader-content">
+            <div class="sakura-wrapper">
+                <div class="sakura">🌸</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p>Waking up the Python engine...</p>
+        </div>
+    </div>
+</div>
 
     <div class="counter-container">
         <div id="total" class="counter-card">
