@@ -59,5 +59,12 @@ def handle_copy(event):
     js.setTimeout(create_proxy(reset_text), 800)
 
 # Activate text area when done loading
-input_area.removeAttribute("disabled")
-input_area.placeholder = "Paste Japanese text here..."
+def init():
+    area = document.querySelector("#jptext")
+    if area:
+        area.removeAttribute("disabled")
+        area.placeholder = "Paste Japanese text here..."
+        # In case text was pasted before load, count it now!
+        count_text(None)
+
+init()
