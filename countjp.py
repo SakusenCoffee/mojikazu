@@ -55,5 +55,5 @@ def handle_copy(event):
 
     span.innerText = "Copied!"
     def reset_text():
-    span.innerText = text_to_copy
+        span.innerText = text_to_copy
     js.setTimeout(create_proxy(reset_text), 800)
